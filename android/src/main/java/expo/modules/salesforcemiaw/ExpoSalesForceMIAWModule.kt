@@ -60,7 +60,7 @@ class ExpoSalesForceMIAWModule : Module() {
       }
     }
 
-    AsyncFunction("closeConversation") { promise: Promise ->
+    AsyncFunction("closeChat") { promise: Promise ->
       moduleScope.launch {
         internalCloseSync()
         sendEvent("onChatClosed", mapOf("reason" to "manual_close"))

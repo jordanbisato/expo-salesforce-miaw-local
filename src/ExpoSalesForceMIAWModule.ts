@@ -8,11 +8,7 @@ import {
 declare class ExpoSalesForceMIAWMod extends NativeModule<ExpoSalesForceMIAWModuleEvents> {
   openChat(): void;
   configure(config: SalesForceMIAWConfig): Promise<string | null | undefined>;
-  closeConversation(): void;
-  setHiddenPreChatFields(fields: Record<string, string>): void;
-  registerPushToken(token: string): void;
-  getConversationId(): Promise<string | null>;
-  clearConversationId(): void;
+  closeChat(): void;
 }
 
 // This call loads the native module object from the JSI.

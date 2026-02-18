@@ -12,9 +12,4 @@ export type ExpoSalesForceMIAWModuleEvents = {
   openChat(): void;
   configure(config: SalesForceMIAWConfig): Promise<string | null | undefined>;
   closeChat(): void;
-  setPreChatFields(fields: Record<string, string>): Promise<boolean>;
-  setHiddenPreChatFields(fields: Record<string, string>): Promise<boolean>;
-  registerPushToken(token: string): Promise<boolean>;
-  getConversationId(): Promise<string | null>;
-  clearConversationId(): Promise<string>;
 };
