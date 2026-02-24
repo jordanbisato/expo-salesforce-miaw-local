@@ -6,9 +6,9 @@ import UIKit
 class SalesForceMIAWDelegateAdapter: NSObject, CoreDelegate, HiddenPreChatDelegate {
     private let hiddenData: [String: String]
     private var conversationCreated: Bool = false
-    weak var module: ExpoSalesForceMIAWModule?
+    weak var module: SalesForceMIAWModule?
     
-    init(hiddenData: [String: String], module: ExpoSalesForceMIAWModule) {
+    init(hiddenData: [String: String], module: SalesForceMIAWModule) {
         self.hiddenData = hiddenData
         self.module = module
         super.init()

@@ -4,7 +4,7 @@ import SMIClientCore
 import SMIClientUI
 import UIKit
 
-public class ExpoSalesForceMIAWModule: Module {
+public class SalesForceMIAWModule: Module {
     private var uiConfiguration: UIConfiguration?
     private var coreDelegateAdapter: SalesForceMIAWDelegateAdapter?
     private var coreClient: CoreClient?
