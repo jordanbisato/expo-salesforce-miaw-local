@@ -52,7 +52,7 @@ const config = {
   orgId: "YOUR_ORG_ID",
   developerName: "YOUR_DEPLOYMENT_NAME",
   //Optional:
-  conversationId: undefined,
+  conversationId: undefined, //send the GUID received on the last SalesForceMIAW.configure() to enter on the same conversation session.
   //Optional:
   preChatFields: {
     FirstName: "Test",
