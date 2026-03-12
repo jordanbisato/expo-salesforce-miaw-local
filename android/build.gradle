@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'expo-module-gradle-plugin'
 
 group = 'expo.modules.salesforcemiaw'
-version = '1.0.0'
+version = '1.0.1'
 
 def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
 apply from: expoModulesCorePlugin
@@ -33,7 +33,7 @@ android {
   namespace "expo.modules.salesforcemiaw"
   defaultConfig {
     versionCode 1
-    versionName "1.0.0"
+    versionName "1.0.1"
   }
 
   buildFeatures {

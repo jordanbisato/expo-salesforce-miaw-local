@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name           = 'ExpoSalesForceMIAW'
-  s.version        = "0.1.0"
+  s.version        = "1.0.1"
   s.summary        = "test"
   s.description    = "test"
   s.license        = "MIT"
