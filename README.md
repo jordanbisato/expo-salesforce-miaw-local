@@ -6,25 +6,27 @@ It allows you to easily add Salesforce chat functionality to your app, leveragin
 
 ##Installation
 
-To install the module, download the release zip, and extract it on your project folder. 
+To install the module, download the release zip, and extract it on your project folder.
 
 ##Configuration
 
 ### 1. Plugin configuration
 
-Download plugin from `/plugins` folder of this module, and drop it on `/plugins` folder of your project. 
-If you use Expo SDK 53, get the `salesforce-miaw-android-53.js`. 
+Download plugin from `/plugins` folder of this module, and drop it on `/plugins` folder of your project.
+If you use Expo SDK 53, get the `salesforce-miaw-android-53.js`.
 If you use Expo SDK 54+ get the `salesforce-miaw-android-54.js`.
 The difference is because SalesForce MIAW need to use Kotlin Gradle Plugin version 2.2.10, but Expo SDK 53 uses a smaller version.
 
-Add this line in your `app.json` ou `app.config.ts`: 
-```{
+Add this line in your `app.json` ou `app.config.ts`:
+
+```
+{
     "plugins": [
       "./plugins/salesforce-miaw-android-53.js" //For Expo SDK 53
       "./plugins/salesforce-miaw-android-54.js" //For Expo SDK 54+
     ]
-}```
-
+}
+```
 
 ### 2. App Rebuild
 
@@ -64,7 +66,10 @@ const config = {
 
 const conversationID = SalesForceMIAW.configure(config);
 if (conversationID) {
-    console.log('SalesForceMiaw configured with conversationID: ', conversationID);
+  console.log(
+    "SalesForceMiaw configured with conversationID: ",
+    conversationID,
+  );
 }
 ```
 
