@@ -10,7 +10,23 @@ To install the module, download the release zip, and extract it on your project 
 
 ##Configuration
 
-### 1. App Rebuild
+### 1. Plugin configuration
+
+Download plugin from `/plugins` folder of this module, and drop it on `/plugins` folder of your project. 
+If you use Expo SDK 53, get the `salesforce-miaw-android-53.js`. 
+If you use Expo SDK 54+ get the `salesforce-miaw-android-54.js`.
+The difference is because SalesForce MIAW need to use Kotlin Gradle Plugin version 2.2.10, but Expo SDK 53 uses a smaller version.
+
+Add this line in your `app.json` ou `app.config.ts`: 
+```{
+    "plugins": [
+      "./plugins/salesforce-miaw-android-53.js" //For Expo SDK 53
+      "./plugins/salesforce-miaw-android-54.js" //For Expo SDK 54+
+    ]
+}```
+
+
+### 2. App Rebuild
 
 After installation and configuration, you need to rebuild your application for the native changes to be applied:
 
@@ -33,6 +49,8 @@ const config = {
   url: "YOUR_SALESFORCE_URL",
   orgId: "YOUR_ORG_ID",
   developerName: "YOUR_DEPLOYMENT_NAME",
+  //Optional:
+  conversationId: undefined,
   //Optional:
   preChatFields: {
     FirstName: "Test",
