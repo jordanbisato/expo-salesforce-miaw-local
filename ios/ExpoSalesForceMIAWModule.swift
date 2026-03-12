@@ -10,6 +10,7 @@ public class SalesForceMIAWModule: Module {
     private var coreClient: CoreClient?
     private var currentConversationId: UUID?
     private var userCanEditPreChatFields: Bool = false
+    private var finalizeSessionOnClose: Bool = false
     private var preChatData: [String: String] = [:]
     private var hiddenPreChatData: [String: String] = [:]
     private var dataKey: String = "ExpoSalesForceMIAW_ConversationId"
@@ -31,9 +32,17 @@ public class SalesForceMIAWModule: Module {
           self.closeChatFunc()
       }
       
+      AsyncFunction("deleteConversationData") { (promise: Promise) in
+          DispatchQueue.main.async {
+              self.deleteConversationId()
+              self.currentConversationId = nil
+              promise.resolve(true)
+          }
+      }
+      
       Function("configure") { (config: [String: Any]) -> String? in
 
-          print("DEBUG: ✅ [ExpoSalesForceMIAW] SDK Configured with: \(config)")
+          print("DEBUG: ✅ [ExpoSalesForceMIAW] Configurando SDK com parâmetros: \(config)")
           guard let urlString = config["url"] as? String,
                 let orgId = config["orgId"] as? String,
                 let developerName = config["developerName"] as? String else {
@@ -44,6 +53,7 @@ public class SalesForceMIAWModule: Module {
           let convId = (config["conversationId"] as? String).flatMap(UUID.init) ?? self.getOrCreateConversationId()
           self.currentConversationId = convId
           self.userCanEditPreChatFields = config["userCanEditPreChatFields"] as? Bool ?? false
+          self.finalizeSessionOnClose = config["finalizeSessionOnClose"] as? Bool ?? false
           
           self.uiConfiguration = UIConfiguration(
               serviceAPI: URL(string: urlString)!,
@@ -62,6 +72,7 @@ public class SalesForceMIAWModule: Module {
           
           return convId.uuidString
       }
+      
       
       AsyncFunction("openChat") { (promise: Promise) in
           DispatchQueue.main.async {
@@ -89,7 +100,7 @@ public class SalesForceMIAWModule: Module {
               
               coreClient.retrieveRemoteConfiguration(completion: { [weak self] remoteConfig, error in
                   guard let self = self, let configRemote = remoteConfig else {
-                      if let error = error { print("❌ Error Remote Config: \(error.localizedDescription)") }
+                      if let error = error { print("❌ Erro Remote Config: \(error.localizedDescription)") }
                       return
                   }
                   self.submitRemoteConfig(coreClient: coreClient, remoteConfig: configRemote)
@@ -193,7 +204,6 @@ public class SalesForceMIAWModule: Module {
     }
     
     @objc func closeChatFunc() {
-        print("### closeChatFunc module ####")
         DispatchQueue.main.async {
             print("DEBUG: [ExpoSalesForceMIAW] Iniciando fechamento forçado...")
             

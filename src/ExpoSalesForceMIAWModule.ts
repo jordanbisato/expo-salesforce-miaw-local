@@ -6,7 +6,7 @@ import {
 } from "./ExpoSalesForceMIAW.types";
 
 declare class ExpoSalesForceMIAWMod extends NativeModule<ExpoSalesForceMIAWModuleEvents> {
-  openChat(): void;
+  openChat(): Promise<boolean>;
   configure(config: SalesForceMIAWConfig): Promise<string | null | undefined>;
   closeChat(): void;
 }

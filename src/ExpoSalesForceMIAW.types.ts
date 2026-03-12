@@ -6,10 +6,11 @@ export interface SalesForceMIAWConfig {
   preChatFields?: Record<string, string>;
   hiddenPreChatFields?: Record<string, string>;
   userCanEditPreChatFields?: boolean;
+  finalizeSessionOnClose?: boolean;
 }
 
 export type ExpoSalesForceMIAWModuleEvents = {
-  openChat(): void;
+  openChat(): Promise<boolean>;
   configure(config: SalesForceMIAWConfig): Promise<string | null | undefined>;
   closeChat(): void;
 };
